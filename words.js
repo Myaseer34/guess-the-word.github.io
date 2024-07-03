@@ -1,9 +1,9 @@
 const targetWords = [
   "sleep",
-  "dream",
-  "awake",
+  "bossy",
+  "misty",
   "stick",
-  "grade",
+  "sassy",
 ]
 const dictionary = [
   "aahed",
