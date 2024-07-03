@@ -22,14 +22,10 @@ function handleMouseClick(e) {
   if (e.target.matches("[data-key]")) {
     pressKey(e.target.dataset.key)
     return
-  }
-
-  if (e.target.matches("[data-enter]")) {
+  } else if (e.target.matches("[data-enter]")) {
     submitGuess()
     return
-  }
-
-  if (e.target.matches("[data-delete]")) {
+  } else {
     deleteKey()
     return
   }
@@ -55,10 +51,15 @@ function handleKeyPress(e) {
 function pressKey(key) {
   const activeTiles = getActiveTiles()
   if (activeTiles.length >= WORD_LENGTH) return
+
+  
   const nextTile = guessGrid.querySelector(":not([data-letter])")
   nextTile.dataset.letter = key.toLowerCase()
   nextTile.textContent = key
   nextTile.dataset.state = "active"
+  if (activeTiles.length + 1 === WORD_LENGTH) {
+    setTimeout(submitGuess, 0)  // Use setTimeout to ensure the last tile is updated before submitting
+  }
 }
 
 function deleteKey() {
